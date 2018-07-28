@@ -48,10 +48,8 @@
               {% endif %}
             </li>
             <li class="nav-item">
-                {% if user.is_authenticated %}
-                  <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
-                {% endif %}
-            </li> 
+              <a href="{% url 'draft_list' %}" class="top-menu">Drafts</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -85,7 +83,7 @@
 
     {% block contact %}
     {% endblock %}
-
+    
     {% block list %}
     <!-- Main Content -->
     <div class="container">
