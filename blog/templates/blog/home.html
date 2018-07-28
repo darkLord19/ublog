@@ -55,13 +55,14 @@
     </nav>
 
     <!-- Page Header -->
+    {% block heading %}
     <header class="jumbotron text-center" style="background-image: url('{% static 'blog/images/tom.jpg' %}')"> 
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto" item-height="100px">
             <div class="site-heading text-white">
-              <br/><br/>
+              <br/>
               <h1>Umang Parmar</h1>
               <span class="subheading">Awesome Blog</span>
             </div>
@@ -69,7 +70,18 @@
         </div>
       </div>
     </header>
+    {% endblock %}
 
+    {% block post_details %}
+    {% endblock %}
+
+    {% block about %}
+    {% endblock %}
+
+    {% block contact %}
+    {% endblock %}
+
+    {% block list %}
     <!-- Main Content -->
     <div class="container">
       <div class="row">
@@ -86,6 +98,7 @@
         </div>
       </div>
     </div>
+    {% endblock %}
 
     <hr>
 
