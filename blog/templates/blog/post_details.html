@@ -1,31 +1,17 @@
 {% extends 'blog/home.html' %}
 
-{% block heading %}
-{% endblock %}
-
 {% block list %}
 {% endblock %}
 
-{% block post_details %}
-    <header class="jumbotron text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-4 col-lg-8 col-md-10 mx-auto">
-            <div class="post-heading">
-              <br/>
-              <h1>{{ post.title }}</h1>
-              <span class="meta">Posted by Umang on 
-                {% if post.published_date %}
-                      {{ post.published_date }}
-                {% endif %}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+{% block page_header %}
+    <h1>{{ post.title }}</h1>
+    <span class="meta">Posted by Umang on 
+      {% if post.published_date %}
+            {{ post.published_date }}
+      {% endif %}
+{% endblock %}
 
+{% block post_details %}
     <!-- Post Content -->
     <article>
       <div class="container">

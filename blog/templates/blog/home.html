@@ -56,15 +56,17 @@
 
     <!-- Page Header -->
     {% block heading %}
-    <header class="jumbotron text-center" style="background-image: url('{% static 'blog/images/tom.jpg' %}')"> 
+    <header class="jumbotron text-center" style="background-image: url('{% static 'blog/images/kelly.webp' %}')"> 
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto" item-height="100px">
             <div class="site-heading text-white">
               <br/>
-              <h1>Umang Parmar</h1>
-              <span class="subheading">Awesome Blog</span>
+              {% block page_header %}
+                <h1>Umang Parmar</h1>
+                <span class="subheading">Awesome Blog</span>
+              {% endblock %}
             </div>
           </div>
         </div>

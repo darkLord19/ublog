@@ -1,27 +1,16 @@
 {% extends 'blog/home.html' %}
 
-{% block heading %}
-{% endblock %}
-
 {% block list %}
 {% endblock %}
 
+{% load static %}
+
+{% block page_header %}
+    <h1>About Me</h1>
+    <span class="subheading">This is what I do.</span>
+{% endblock %}
+    
 {% block about %}
-    <!-- Page Header -->
-    <header class="jumbotron text-center" style="background-image: url('img/about-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-heading">
-              <br/>
-              <h1>About Me</h1>
-              <span class="subheading">This is what I do.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
