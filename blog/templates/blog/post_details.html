@@ -9,6 +9,13 @@
       {% if post.published_date %}
             {{ post.published_date }}
       {% endif %}
+      <br/><br/>
+      {% if user.is_authenticated %}
+        <a class="btn btn-default nav-link text-white" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
+      {% endif %}
+      {% if user.is_authenticated %}
+        <a class="btn btn-default text-white" href="{% url 'post_remove' pk=post.pk %}">Delete</a>
+      {% endif %}
 {% endblock %}
 
 {% block post_details %}
