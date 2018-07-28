@@ -65,8 +65,12 @@ WSGI_APPLICATION = 'umangparmar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': Const.DB_NAME,
+        'USER': Const.DB_USERNAME,
+        'PASSWORD': Const.DB_PASSWORD,
+        'HOST': Const.DB_HOST,
+        'PORT': Const.DB_PORT,
     }
 }
 
