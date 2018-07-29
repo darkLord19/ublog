@@ -3,7 +3,7 @@
 {% block content %}
 
     {% for post in posts %}
-        <div class="card mx-auto bg-light border-dark" style="width: 50rem;">
+        <div class="card mx-auto bg-light border-dark" style="width: 80%;">
             <div class="card-body">
             <h5 class="card-title"><a href="{% url 'post_details' pk=post.pk %}">{{ post.title }}</a></h5>
             <h6 class="card-subtitle mb-2 text-muted">Published on {{ post.published_date }}</h6>

@@ -1,6 +1,9 @@
 {% extends 'blog/home.html' %}
 
-{% block content %}
+{% block list %}
+{% endblock %}
+
+{% block edit %}
     <h1>New post</h1>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
