@@ -8,9 +8,9 @@
             <h5 class="card-title"><a href="{% url 'post_details' pk=post.pk %}">{{ post.title }}</a></h5>
             <h6 class="card-subtitle mb-2 text-muted">Published on {{ post.published_date }}</h6>
             <hr>
-            <p class="card-text">{{ post.summary|linebreaksbr }}</p>
-            <a href="{% url 'post_details' pk=post.pk %}" class="card-link">Comments: {{ post.comments.count }}</a>
-            <a href="#" class="card-link">Share</a>
+            <p class="card-text text-black">{{ post.summary|linebreaksbr }}</p>
+            <small><a href="{% url 'post_details' pk=post.pk %}" class="card-link">Comments: {{ post.comments.count }}</a></small>
+            <!-- <a href="#" class="card-link">Share</a> -->
             </div>
         </div>
     {% endfor %}
