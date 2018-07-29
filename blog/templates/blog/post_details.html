@@ -35,7 +35,7 @@
           {% for comment in post.comments.all %}
           <li class="list-group-item">
               <strong>{{ comment.msg | linebreaks }}</strong> 
-              <small>{{ comment.author }} Wrote, on {{ comment.created_date }}</small>
+              <small>{{ comment.author }} Wrote on {{ comment.created_date }}</small>
           </li>
           {% endfor %}
         </ul>
