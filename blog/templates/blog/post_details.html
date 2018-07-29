@@ -46,10 +46,19 @@
         {% if post.published_date %}
           <div class="row">
             <div class="col-sm-4 col-lg-8 col-md-10 mx-auto">
-                <form method="POST" class="post-form">{% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="save btn btn-default">Send</button>
-                </form>
+              <form name="sentMessage" method="POST" validate>
+                {% csrf_token %}
+                <div class="form-row">
+                 {% for field in form %}
+                      <div class="col">
+                       <label>{{ field.label }}</label><br/>
+                       {{ field }}
+                      </div>
+                  {% endfor %}
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+              </form>
             </div>
           {% endif %}
         </div>
