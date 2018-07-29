@@ -12,4 +12,4 @@ media
 privates.py
 venv
 pip-log.txt
-
+.vscode
