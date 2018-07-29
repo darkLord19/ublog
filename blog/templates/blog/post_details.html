@@ -39,31 +39,17 @@
                 <div class="col-sm-4 col-lg-8 col-md-10 mx-auto">
                     <div class="date">{{ comment.created_date }}</div>
                     <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.msg |linebreaks }}</p>
+                    <p>{{ comment.msg | linebreaks }}</p>
                 </div>
             {% endfor %}
         </div>
         {% if post.published_date %}
           <div class="row">
             <div class="col-sm-4 col-lg-8 col-md-10 mx-auto">
-              <form name="sentMessage" id="contactForm" validate>
-                    <div class="form-group controls">
-                      <label>Name</label>
-                      <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
-                      <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="control-group">
-                    <div class="form-group controls">
-                      <label>Message</label>
-                      <input type="text" class="form-control" placeholder="Message" id="text" required data-validation-required-message="Please enter your email address.">
-                      <p class="help-block text-danger"></p>
-                    </div>
-                  </div>
-                  <div id="success"></div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
-                  </div>
-              </form>
+                <form method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="save btn btn-default">Send</button>
+                </form>
             </div>
           {% endif %}
         </div>

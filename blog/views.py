@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from .models import Post,Comment
 
@@ -11,7 +11,13 @@ def home_page(request):
 
 def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_details.html', {'post': post})
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return redirect('post_details', pk=post.pk)
+    return render(request, 'blog/post_details.html', {'post': post, 'form':form})
 
 @login_required
 def post_new(request):
@@ -56,6 +62,20 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('home_page')
+
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request=="POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('post_details', pk=post.pk)
+    else:
+        form = CommentForm()
+        return render(request, 'blog/post_details', {'form': form})
+
 
 def contact_me(request):
     return render(request, 'blog/contact.html')
