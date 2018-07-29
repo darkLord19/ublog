@@ -1,15 +1,18 @@
 {% extends 'blog/home.html' %}
 
 {% block content %}
+
     {% for post in posts %}
-        <div class="post">
-            <h2><a href="{% url 'post_details' pk=post.pk %}">{{ post.title }}</a></h2>
-            <h7>{{ post.summary|linebreaksbr }}</h7><br/>
-            
-            <a href="{% url 'post_details' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
-            <div class="date">
-                Published on {{ post.published_date }}
+        <div class="card mx-auto bg-light" style="width: 50rem;">
+            <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'post_details' pk=post.pk %}">{{ post.title }}</a></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Published on {{ post.published_date }}</h6>
+            <hr>
+            <p class="card-text">{{ post.summary|linebreaksbr }}</p>
+            <a href="{% url 'post_details' pk=post.pk %}" class="card-link">Comments: {{ post.comments.count }}</a>
+            <a href="#" class="card-link">Share</a>
             </div>
         </div>
     {% endfor %}
+
 {% endblock %}

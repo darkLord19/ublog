@@ -74,19 +74,10 @@
       </div>
     </header>
     {% endblock %}
-
-    {% block post_details %}
-    {% endblock %}
-
-    {% block about %}
-    {% endblock %}
-
-    {% block contact %}
-    {% endblock %}
     
     {% block list %}
     <!-- Main Content -->
-    <div class="container">
+    <div class="full-container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-preview">
@@ -101,6 +92,15 @@
         </div>
       </div>
     </div>
+    {% endblock %}
+
+    {% block post_details %}
+    {% endblock %}
+
+    {% block about %}
+    {% endblock %}
+
+    {% block contact %}
     {% endblock %}
 
     <hr>
