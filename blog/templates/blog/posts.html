@@ -11,6 +11,7 @@
             <p class="card-text text-black">{{ post.summary|linebreaksbr }}</p>
             <small><a href="{% url 'post_details' pk=post.pk %}" class="card-link">Comments: {{ post.comments.count }}</a></small>
             <!-- <a href="#" class="card-link">Share</a> -->
+            <br/>
             </div>
         </div>
     {% endfor %}
