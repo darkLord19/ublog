@@ -15,4 +15,4 @@ class CommentForm(forms.ModelForm):
                             widget=forms.TextInput(attrs={'placeholder': 'Write your comment here.'}))
     class Meta:
         model = Comment
-        fields = ('author', 'msg')
+        fields = ('msg', 'author')
