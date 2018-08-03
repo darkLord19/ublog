@@ -1,5 +1,13 @@
 {% extends 'blog/home.html' %}
 
+{% block description %}
+<meta name="description" content="{{ post.summary }}">
+{% endblock %}
+
+{% block page_title %}
+<title>{{post.title}}</title>
+{% endblock %}
+
 {% block list %}
 {% endblock %}
 
