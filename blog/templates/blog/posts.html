@@ -5,11 +5,11 @@
     {% for post in posts %}
         <div class="card mx-auto border-dark mb-5" style="width: 80%;">
             <div class="card-body">
-            <h5 class="card-title"><a href="{% url 'post_details' pk=post.pk %}">{{ post.title }}</a></h5>
+            <h5 class="card-title"><a href="{% url 'post_details' slug=post.slug %}">{{ post.title }}</a></h5>
             <h6 class="card-subtitle mb-2 text-muted">Published on {{ post.published_date }}</h6>
             <hr>
             <p class="card-text text-black">{{ post.summary|linebreaksbr }}</p>
-            <small><a href="{% url 'post_details' pk=post.pk %}" class="card-link">Comments: {{ post.comments.count }}</a></small>
+            <small><a href="{% url 'post_details' slug=post.slug %}" class="card-link">Comments: {{ post.comments.count }}</a></small>
             <!-- <a href="#" class="card-link">Share</a> -->
             </div>
         </div>
