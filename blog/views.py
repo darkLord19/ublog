@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from .forms import PostForm, CommentForm
+from django.core.mail import BadHeaderError, send_mail
 from django.contrib.auth.decorators import login_required
 from .models import Post,Comment
+from .forms import PostForm, CommentForm,ContactForm
+from umangparmar import privates
 
 def home_page(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -64,7 +66,22 @@ def post_remove(request, pk):
     return redirect('home_page')
 
 def contact_me(request):
-    return render(request, 'blog/contact.html')
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = 'Someone connected you from your blog'
+            name = request.POST.get('name', '')
+            from_email = request.POST.get('from_email', '')
+            msg = request.POST.get('msg', '')
+            if name and from_email and msg:
+                try:
+                    send_mail(subject, msg, from_email, Const.TO_EMAIL)
+                except BadHeaderError:
+                    return redirect(request, 'blog/contact.html', {'bad_header': '1'})
+                return redirect(request, 'blog/contact.html', {'suceess': '1'})
+    else:
+        form=ContactForm()
+    return render(request, 'blog/contact.html', {'form': form})
 
 def about_me(request):
     return render(request, 'blog/about.html')
