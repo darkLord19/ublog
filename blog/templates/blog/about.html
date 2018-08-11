@@ -1,31 +1,34 @@
 {% extends 'blog/home.html' %}
 
-{% block list %}
-{% endblock %}
-
 {% block description %}
 <meta name="description" content="About Umang Parmar">
 {% endblock %}
 
-{% load static %}
-
-{% block page_header %}
-    <h1>I Worship Linus.</h1>
-    <span class="subheading">Developer | Tech Enthusiast | Curious creature</span>
+{% block header %}
+	<header class="center-align teal darken-1 white-text" style="height: 100px;">
+		<p class="flow-text"><b>Tech Enthusiast | Developer | Curious Creature | Linux over Anything</b></p>
+	</header>
 {% endblock %}
+
+{% load static %}
     
 {% block about %}
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Hi! My name is Umang. I am pursuing undergraduate degree in Information and Communication Technology 
-            field. I am very much interested in Operating Systems and Computer Networks. In addition to these, I
-            like backend development, playing with data and creating android applications.</p>
-          <p>I am strong believer of open source. I use only *nix operating systems for my daily usage.
-            On non-technical side, I like to play badminton and sometimes I write!
-          </p>
+    <div class="container flow-text dark-text">
+        <div class="row valign-wrapper">
+            <div class="col s12 m12 valign">
+              <div class="card white hoverable">
+                <div class="card-content dark-text">
+                    <p>Hi! My name is Umang. I am pursuing undergraduate degree in Information and Communication Technology 
+                        field. I am very much interested in Operating Systems and Computer Networks. In addition to these, I
+						like backend development, playing with data and creating android applications.</p>
+						<br/>
+                    <p>I am strong believer of open source. I use only *nix operating systems for my daily usage.
+                        On non-technical side, I like to play badminton and sometimes I write!
+                    </p>
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
     </div>
 
 {% endblock %}

@@ -31,15 +31,16 @@
 {% block post_details %}
     <!-- Post Content -->
     <article>
-      <div class="container">
-        <div class="card mx-auto bg-light border-dark" style="width: 90%;">
-          <div class="card-body">
-            <p class="card-text">
-              {{ post.body | markdown | safe }}
-            </p>
-          </div>
+        <div class="row valign-wrapper">
+            <div class="col s10 offset-s1 valign">
+              <div class="card white darken-1 hoverable">
+                <div class="card-content dark-text">
+                  <span class="card-title purple-text lighten"><h1>{{ post.title }}</h1></span>
+                  <p>{{ post.body | markdown | safe }}</p>
+                </div>
+              </div>
+            </div>
         </div>
-        <hr>
         <ul class="list-group mx-auto" style="width: 80%">
           {% for comment in post.comments.all %}
           <li class="list-group-item">
