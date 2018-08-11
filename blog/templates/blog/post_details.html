@@ -1,4 +1,5 @@
 {% extends 'blog/home.html' %}
+{% load markdownify %}
 
 {% block description %}
 <meta name="description" content="{{ post.summary }}">
@@ -34,7 +35,7 @@
         <div class="card mx-auto bg-light border-dark" style="width: 90%;">
           <div class="card-body">
             <p class="card-text">
-              <p>{{ post.body|linebreaksbr }}</p>
+              {{ post.body | markdown | safe }}
             </p>
           </div>
         </div>
