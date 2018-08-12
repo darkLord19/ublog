@@ -17,6 +17,7 @@
 		<title>Umang Parmar</title>
 		{% endblock %}
 
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="{% static 'blog/css/materialize.min.css' %}">
 
 		<style>
@@ -65,7 +66,8 @@
 					<li><a href="{% url 'about_me' %}">About Me</a></li>
 					<li><a href="{% url 'contact_me' %}">Contact Me</a></li>
 				</ul>
-				<a href="#" data-target="nav-mobile" class="sidenav-trigger">M</a>
+				<a href="#" data-target="nav-mobile" class="sidenav-trigger">
+					<i class="material-icons">menu</i></a>
 			</div>
 		</nav>
 
@@ -115,7 +117,7 @@
 		var instances = M.Sidenav.init(elems);
 		});
 	</script>
-    <script src="{% static 'blog/js/materialize.min.js' %}" async></script> 
+    <script defer src="{% static 'blog/js/materialize.min.js' %}"></script> 
 
   </body>
 
