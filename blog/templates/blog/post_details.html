@@ -9,66 +9,66 @@
 <title>{{post.title}}</title>
 {% endblock %}
 
-{% block list %}
-{% endblock %}
-
-{% block page_header %}
- <h1>{{ post.title }}</h1>
-    <span class="meta">Posted by Umang on 
-      {% if post.published_date %}
-            {{ post.published_date }}
-      {% else %}
-          {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
-          {% endif %}
-      {% endif %}
-      {% if user.is_authenticated %}
-        <a class="btn btn-default text-white" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
-        <a class="btn btn-default text-white" href="{% url 'post_remove' pk=post.pk %}">Delete</a>
-      {% endif %} 
+{% block header %}
+	<header class="center-align teal darken-1 white-text" style="height: 140px;">
+		<p class="flow-text"><b>{{ post.title }}</b></p>
+		<span class="meta"> 
+			{% if post.published_date %}
+				Posted by Umang on {{ post.published_date }}
+			{% else %}
+				{% if user.is_authenticated %}
+				  <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+				{% endif %}
+			{% endif %}
+			{% if user.is_authenticated %}
+			  <a class="btn btn-default text-white" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
+			  <a class="btn btn-default text-white" href="{% url 'post_remove' pk=post.pk %}">Delete</a>
+			{% endif %}
+		</span>
+	</header>
 {% endblock %}
 
 {% block post_details %}
     <!-- Post Content -->
-    <article>
+    <article class="flow-text">
         <div class="row valign-wrapper">
-            <div class="col s10 offset-s1 valign">
+            <div class="col s8 m10 l12 offset-s2 offset-m1 valign">
               <div class="card white darken-1 hoverable">
                 <div class="card-content dark-text">
-                  <span class="card-title purple-text lighten"><h1>{{ post.title }}</h1></span>
-                  <p>{{ post.body | markdown | safe }}</p>
+                  <p>{{ post.body | markdown | safe | linebreaks}}</p>
                 </div>
               </div>
             </div>
         </div>
-        <ul class="list-group mx-auto" style="width: 80%">
-          {% for comment in post.comments.all %}
-          <li class="list-group-item">
-              <strong>{{ comment.msg | linebreaks }}</strong> 
-              <small>{{ comment.author }} Wrote on {{ comment.created_date }}</small>
-          </li>
-          {% endfor %}
-        </ul>
-        {% if post.published_date %}
-        <br/>
-        <div class="row mx-auto" style="width: 80%">
-          <div class="col-sm-4 col-lg-10 col-md-12 mx-auto">
-            <form name="sentMessage" method="POST" validate>
-              {% csrf_token %}
-              <div class="form-row">
-                {% for field in form %}
-                    <div class="col">
-                      <label>{{ field.label }}</label><br/>
-                      {{ field }}
-                    </div>
-                {% endfor %}
-              </div>
-              <br>
-              <button type="submit" class="btn btn-primary">Send</button>
-            </form>
-          </div>
-          {% endif %}
-        </div>
-      </div>
+        <div class="row">
+          	<div class="col s8 m10 l12 offset-m1 offset-s2">
+            	<form method="POST" class="validate">
+					{% csrf_token %}
+					<div class="row">
+						{% for field in form %}
+						<div class="col input-field col s5 m5 l5">
+							<label class="black-text"><h7>{{ field.label }}</h7></label>
+							{{ field }}
+						</div>
+						{% endfor %}
+						<div class="col s5 m5 l5">
+							<button type="submit" class="btn">Send</button>
+						</div>
+					</div> 
+            	</form>
+			  </div>
+		</div>
+		<div class="row">
+			<div class="col s8 m10 l12 offset-m1 offset-s2">
+				<ul class="collection">
+					{% for comment in post.comments.all %}
+					<li class="collection-item">
+						<strong>{{ comment.msg | linebreaks }}</strong> 
+						<small><h7 class="teal-text">{{ comment.author }}</h7> wrote on {{ comment.created_date }}</small>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
     </article>
 {% endblock %}

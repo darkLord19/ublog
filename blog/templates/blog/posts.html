@@ -4,14 +4,14 @@
 
     {% for post in posts %}
         <div class="row valign-wrapper">
-            <div class="col s10 offset-s1 valign">
+            <div class="col s8 m10 l12 offset-s2 offset-m1 valign">
               <div class="card white hoverable">
                 <div class="card-content dark-text">
                   <span class="card-title deep-purple-text"><b>{{ post.title }}</b></span>
                   <p>{{ post.summary | linebreaksbr }}</p>
                 </div>
-                <div class="card-action">
-                  <a href="{% url 'post_details' slug=post.slug %}" class="deep-purple-text">Read More...</a>
+                <div class="card-action button">
+                  <a class="waves-effect waves-light btn z-depth-2" href="{% url 'post_details' slug=post.slug %}">Read More</a>
                 </div>
               </div>
             </div>

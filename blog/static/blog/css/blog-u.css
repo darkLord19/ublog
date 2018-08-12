@@ -11,4 +11,12 @@ body {
 main {
     flex: 1 0 auto;
 }
-      
+
+.link {
+    color: green;
+    text-decoration: underline;
+}
+
+.btn:hover { 
+    background-color:#ef5350 ;
+}

@@ -11,31 +11,21 @@
 {% endblock %}
 
 {% block contact %}
-
-    <div class="container flow-text">
-      <div class="row">
-        <div class="col s10 m12">
-          <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
-          <div class="row">
-              <form class="col s12">
-                  {% csrf_token %}
-                <div class="row">
-                    {% for field in form %}
-                    <div class="input-field col s6">
-                        <label>{{ field.label }}</label>
-                        {{ field }}
-                        <p class="help-block text-danger"></p>
-                      </div>
-                    {% endfor %}
-                  </div>
-            
-            <div id="success"></div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="row flow-text">
+		<form class="col s8 m10 l12 offset-s2 offset-m1">
+			{% csrf_token %}
+			<div class="row">
+				{% for field in form %}
+				<div class="input-field col s8 m10 l12 offset-m1 offset-s2">
+						<label class="black-text"><h7>{{ field.label }}</h7></label>
+						{{ field }}
+						<p class="help-block text-danger"></p>
+				</div>
+				{% endfor %}
+				<div class="col s8 m10 l12 offset-m1 offset-s2">
+					<button type="submit" class="btn">Send</button>
+				</div> 
+			</div>
+		</form>
     </div>
-
 {% endblock %}
