@@ -16,7 +16,7 @@
 		<title>Umang Parmar</title>
 		{% endblock %}
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+		<link rel="stylesheet" href="{% static 'blog/css/materialize.min.css' %}">
 
 		<style>
 			ul#footer li {
@@ -114,7 +114,7 @@
 		var instances = M.Sidenav.init(elems);
 		});
 	</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js" async></script> 
+    <script src="{% static 'blog/js/materialize.min.js' %}" async></script> 
 
   </body>
 
