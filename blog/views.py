@@ -5,7 +5,7 @@ from django.core.mail import BadHeaderError, send_mail
 from django.contrib.auth.decorators import login_required
 from .models import Post,Comment
 from .forms import PostForm, CommentForm,ContactForm
-from umangparmar import privates
+from umangparmar.privates import Const
 
 def home_page(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -69,8 +69,8 @@ def contact_me(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            subject = 'Someone connected you from your blog'
             name = request.POST.get('name', '')
+            subject = name + ' contacted you from your blog'
             from_email = request.POST.get('from_email', '')
             msg = request.POST.get('msg', '')
             if name and from_email and msg:
@@ -78,7 +78,7 @@ def contact_me(request):
                     send_mail(subject, msg, from_email, Const.TO_EMAIL)
                 except BadHeaderError:
                     return redirect(request, 'blog/contact.html', {'bad_header': '1'})
-                return redirect(request, 'blog/contact.html', {'suceess': '1'})
+                return redirect('contact_me')
     else:
         form=ContactForm()
     return render(request, 'blog/contact.html', {'form': form})

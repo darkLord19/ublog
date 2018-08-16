@@ -22,8 +22,7 @@ class ContactForm(forms.Form):
                             widget=forms.TextInput(attrs={'placeholder': 'Rachel Green', 'class': 'form-control', 'id': 'name'}), \
                             error_messages={'required': 'Please enter your name.'})
     from_email = forms.EmailField(required=True, label='Email', \
-                            widget=forms.TextInput(attrs={'placeholder': 'phoebe@smellycat.com', 'class': 'form-control', 'id': 'email'}), \
-                            validators=[EmailValidator(message="Please enter valid email addres")])
+                            widget=forms.TextInput(attrs={'placeholder': 'phoebe@smellycat.com', 'class': 'form-control', 'id': 'email'}),)
     msg = forms.CharField(required=True, max_length=300,label='Message', \
                             widget=forms.TextInput(attrs={'placeholder': 'What do you want to ask?', 'class': 'form-control', 'id': 'message', \
                             'data-validation-required-message': 'Please enter your message.', 'rows': '3'}))

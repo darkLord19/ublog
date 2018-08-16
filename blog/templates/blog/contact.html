@@ -1,9 +1,6 @@
 {% extends 'blog/home.html' %}
 {% load static %}
 
-{% block list %}
-{% endblock %}
-
 {% block header %}
 	<header class="center-align teal darken-1 white-text" style="height: 100px;">
       <p class="flow-text"><b>Have questions? I have answers.</b></p>
@@ -12,9 +9,9 @@
 
 {% block contact %}
     <div class="row flow-text">
-		<form class="col s10 m10 l12 offset-m1 offset-s1">
+		<form class="col s10 m10 l12 offset-m1 offset-s1" method="POST">
 			{% csrf_token %}
-			<div class="row">
+			<!-- <div class="row">
 				{% for field in form %}
 				<div class="input-field col s10 m10 l12 offset-m1 offset-s1">
 						<label class="black-text"><h7>{{ field.label }}</h7></label>
@@ -25,7 +22,11 @@
 				<div class="col s10 m10 l12 offset-m1 offset-s1">
 					<button type="submit" class="btn">Send</button>
 				</div> 
-			</div>
+			</div> -->
+			{{ form.as_p }}
+			<div class="col s10 m10 l12 offset-m1 offset-s1">
+					<button type="submit" class="btn">Send</button>
+			</div> 
 		</form>
     </div>
 {% endblock %}
