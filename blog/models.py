@@ -4,6 +4,13 @@ from django.db import models
 from django.template.defaultfilters import slugify
 
 class Post(models.Model):
+    cat_choices = (
+        ('technology', 'Technology'),
+        ('personal', 'Personal'),
+        ('poetry', 'Poetry'),
+        ('rants', 'Rants'),
+        ('random', 'Random'),
+    )
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=70)
     body = models.TextField()
@@ -11,6 +18,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now())
     published_date = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(max_length=40, unique=True)
+    category = models.CharField(max_length=10, choices=cat_choices)
 
     def publish(self):
         self.published_date = timezone.now()

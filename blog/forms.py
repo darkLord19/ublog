@@ -2,11 +2,10 @@ from django import forms
 from django.core.validators import EmailValidator
 from .models import Post,Comment
 
-class PostForm(forms.ModelForm):
-    
+class PostForm(forms.ModelForm):   
     class Meta:
         model = Post
-        fields = ('title', 'body',)
+        fields = ('title', 'category', 'body')
 
 class CommentForm(forms.ModelForm):
     author = forms.CharField(required=True, max_length=15, label='Name', \
