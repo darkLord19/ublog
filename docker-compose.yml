@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  localhost:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: umang
+      POSTGRES_PASSWORD: umang#999
+      POSTGRES_DB: blog
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/blog
+    ports:
+      - "8000:8000"
+    depends_on:
+      - localhost
