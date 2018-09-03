@@ -39,10 +39,11 @@
                 </div>
               </div>
             </div>
-        </div>
+		</div>
+		{% if post.published_date %}
         <div class="row">
-          	<div class="col s10 m10 l12 offset-s1 offset-m1">
-            	<form method="POST" class="validate">
+			<div class="col s10 m10 l12 offset-s1 offset-m1">
+				<form method="POST" class="validate">
 					{% csrf_token %}
 					<div class="row">
 						{% for field in form %}
@@ -60,15 +61,14 @@
 		</div>
 		<div class="row">
 			<div class="col s10 m10 l12 offset-m1 offset-s1">
-				<ul class="collection">
-					{% for comment in post.comments.all %}
-					<li class="collection-item">
-						<strong>{{ comment.msg | linebreaks }}</strong> 
-						<small><h7 class="teal-text">{{ comment.author }}</h7> wrote on {{ comment.created_date }}</small>
-					</li>
-					{% endfor %}
-				</ul>
+				{% for comment in post.comments.all %}
+					<blockquote>
+						<h6><strong>{{ comment.msg | linebreaks }}</strong></h6>
+						<strong class="teal-text">{{ comment.author }}</strong> wrote on {{ comment.created_date }}
+					</blockquote>
+				{% endfor %}
 			</div>
 		</div>
+		{% endif %}
     </article>
 {% endblock %}

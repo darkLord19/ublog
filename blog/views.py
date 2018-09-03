@@ -22,16 +22,9 @@ def post_detail(request, year, month, slug):
                             month=post.published_date.month, slug=post.slug)
     return render(request, 'blog/post_detail.html', {'post': post, 'form':form})
 
-def post_detail(request, year, month, slug):
-    post = get_object_or_404(Post, slug=slug, published_date__year=year, published_date__month=month)
-    form = CommentForm(request.POST or None)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.post = post
-        comment.save()
-        return redirect('post_detail', year=post.published_date.year, 
-                            month=post.published_date.month, slug=post.slug)
-    return render(request, 'blog/post_detail.html', {'post': post, 'form':form})
+def draft_post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk) 
+    return render(request, 'blog/post_detail.html', {'post': post})
 
 @login_required
 def post_new(request):
