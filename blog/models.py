@@ -4,7 +4,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 
 class Post(models.Model):
-    cat_choices = (
+    category_choices = (
         ('technology', 'Technology'),
         ('personal', 'Personal'),
         ('poetry', 'Poetry'),
@@ -18,7 +18,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now())
     published_date = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(max_length=40, unique=True)
-    category = models.CharField(max_length=10, choices=cat_choices)
+    category = models.CharField(max_length=10, choices=category_choices, default='technology')
 
     def publish(self):
         self.published_date = timezone.now()
