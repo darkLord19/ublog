@@ -11,26 +11,27 @@ def home_page(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'blog/posts.html', {'posts':posts})
 
-def post_details(request, slug):
-    post = get_object_or_404(Post, slug=slug)
-    form = CommentForm(request.POST or None)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.post = post
-        comment.save()
-        return redirect('post_details', slug=post.slug)
-    return render(request, 'blog/post_details.html', {'post': post, 'form':form})
-
-def post_details(request, year, month, slug):
+def post_detail(request, year, month, slug):
     post = get_object_or_404(Post, slug=slug, published_date__year=year, published_date__month=month)
     form = CommentForm(request.POST or None)
     if form.is_valid():
         comment = form.save(commit=False)
         comment.post = post
         comment.save()
-        return redirect('post_details', slug=post.slug)
-    return render(request, 'blog/post_details.html', {'post': post, 'form':form})
+        return redirect('post_detail', year=post.published_date.year, 
+                            month=post.published_date.month, slug=post.slug)
+    return render(request, 'blog/post_detail.html', {'post': post, 'form':form})
 
+def post_detail(request, year, month, slug):
+    post = get_object_or_404(Post, slug=slug, published_date__year=year, published_date__month=month)
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return redirect('post_detail', year=post.published_date.year, 
+                            month=post.published_date.month, slug=post.slug)
+    return render(request, 'blog/post_detail.html', {'post': post, 'form':form})
 
 @login_required
 def post_new(request):
@@ -40,7 +41,8 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_details', slug=post.slug)
+            return redirect('post_detail', year=post.published_date.year, 
+                            month=post.published_date.month, slug=post.slug)
     else:
         form = PostForm()
     return render(request, 'blog/post_new.html', {'form': form})
@@ -54,7 +56,8 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_details', slug=post.slug)
+            return redirect('post_detail', year=post.published_date.year, 
+                            month=post.published_date.month, slug=post.slug)
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form, 'title': post.title})
@@ -68,7 +71,8 @@ def draft_list(request):
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
-    return redirect('post_details', slug=post.slug)
+    return redirect('post_detail', year=post.published_date.year, 
+                            month=post.published_date.month, slug=post.slug)
 
 @login_required
 def post_remove(request, pk):

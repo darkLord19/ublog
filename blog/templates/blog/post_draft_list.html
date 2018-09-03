@@ -8,7 +8,7 @@
     {% for post in posts %}
         <div class="post">
             <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
-            <h1><a href="{% url 'post_details' slug=post.slug %}">{{ post.title }}</a></h1>
+            <h1><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h1>
             <p>{{ post.text|truncatechars:200 }}</p>
         </div>
     {% endfor %}
