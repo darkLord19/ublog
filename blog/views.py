@@ -21,6 +21,17 @@ def post_details(request, slug):
         return redirect('post_details', slug=post.slug)
     return render(request, 'blog/post_details.html', {'post': post, 'form':form})
 
+def post_details(request, year, month, slug):
+    post = get_object_or_404(Post, slug=slug, published_date__year=year, published_date__month=month)
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return redirect('post_details', slug=post.slug)
+    return render(request, 'blog/post_details.html', {'post': post, 'form':form})
+
+
 @login_required
 def post_new(request):
     if request.method == "POST":
