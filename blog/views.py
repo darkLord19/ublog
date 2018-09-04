@@ -34,8 +34,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_detail', year=post.published_date.year, 
-                            month=post.published_date.month, slug=post.slug)
+            return redirect('draft_post_detail', pk=post.pk)
     else:
         form = PostForm()
     return render(request, 'blog/post_new.html', {'form': form})
