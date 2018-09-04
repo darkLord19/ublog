@@ -3,9 +3,17 @@
 {% block edit %}
     <h1>New post</h1>
     <div class="row">
-        <form method="POST" action="{% url 'post_new' %}" class="col s12 m12 l12"> {% csrf_token %}
-            
+        <form method="POST" class="col s12"> {% csrf_token %}
+                {% for field in form %}
+                    <div class="row">
+                        <!-- This fucking input-field class is required to display dropdown. Wasted nearly a week wandering why it wasn't showing up -->
+                        <div class="input-field col s12">
+                            {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
             <button type="submit" class="btn">Save</button>
         </form>
     </div>
+
 {% endblock %}
