@@ -4,7 +4,7 @@
     <h1>New post</h1>
     <div class="row">
         <form method="POST" action="{% url 'post_new' %}" class="col s12 m12 l12"> {% csrf_token %}
-            {{ form.category }}
+            
             <button type="submit" class="btn">Save</button>
         </form>
     </div>
