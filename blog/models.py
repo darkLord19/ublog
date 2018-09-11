@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.db import models
 from django.template.defaultfilters import slugify
 
+
 class Post(models.Model):
     category_choices = (
         ('technology', 'Technology'),
@@ -18,7 +19,9 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now())
     published_date = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(max_length=40, unique=True)
-    category = models.CharField(max_length=10, choices=category_choices, default='technology')
+    category = models.CharField(
+        max_length=10, choices=category_choices, default='technology'
+    )
 
     def publish(self):
         self.published_date = timezone.now()
@@ -34,8 +37,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
-    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(
+        'blog.Post', on_delete=models.CASCADE, related_name='comments'
+    )
     author = models.CharField(max_length=15)
     msg = models.CharField(max_length=300)
     created_date = models.DateTimeField(default=timezone.now)

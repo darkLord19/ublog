@@ -7,15 +7,15 @@ from django.utils.timezone import utc
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('blog', '0002_auto_20180803_1552'),
-    ]
+    dependencies = [('blog', '0002_auto_20180803_1552')]
 
     operations = [
         migrations.AlterField(
             model_name='post',
             name='created_date',
-            field=models.DateTimeField(default=datetime.datetime(2018, 8, 3, 11, 0, 59, 956213, tzinfo=utc)),
+            field=models.DateTimeField(
+                default=datetime.datetime(2018, 8, 3, 11, 0, 59, 956213, tzinfo=utc)
+            ),
         ),
         migrations.AlterField(
             model_name='post',
