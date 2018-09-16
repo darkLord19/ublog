@@ -38,6 +38,10 @@ def draft_post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
+def year_archive(request, year):
+    posts = Post.objects.filter(published_date__year=year).order_by('-published_date')
+    return render(request, 'blog/posts.html', {'posts': posts})
+
 @login_required
 def post_new(request):
     if request.method == "POST":
