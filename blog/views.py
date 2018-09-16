@@ -42,6 +42,12 @@ def year_archive(request, year):
     posts = Post.objects.filter(published_date__year=year).order_by('-published_date')
     return render(request, 'blog/posts.html', {'posts': posts})
 
+def month_archive(request, year, month):
+    posts = Post.objects.filter(
+        published_date__year=year, published_date__month=month
+    ).order_by('-published_date')
+    return render(request, 'blog/posts.html', {'posts': posts})
+
 @login_required
 def post_new(request):
     if request.method == "POST":
