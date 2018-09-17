@@ -48,6 +48,10 @@ def month_archive(request, year, month):
     ).order_by('-published_date')
     return render(request, 'blog/posts.html', {'posts': posts})
 
+def posts_by_category(request, category):
+    posts = Post.objects.filter(category=category).order_by('-published_date')
+    return render(request, 'blog/posts.html', {'posts': posts})
+
 @login_required
 def post_new(request):
     if request.method == "POST":

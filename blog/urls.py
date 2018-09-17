@@ -8,6 +8,7 @@ urlpatterns = [
     path('<int:year>/<int:month>/<slug:slug>', views.post_detail, name='post_detail'),
     path('archive/<int:year>', views.year_archive, name='year_archive'),
     path('archive/<int:year>/<int:month>', views.month_archive, name='month_archive'),
+    path('category/<category>', views.posts_by_category, name='posts_by_category'),
     path('new', views.post_new, name='post_new'),
     path('<int:pk>/edit/', views.post_edit, name='post_edit'),
     path('drafts/', views.draft_list, name='draft_list'),
