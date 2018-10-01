@@ -135,3 +135,32 @@ def contact_me(request):
 
 def about_me(request):
     return render(request, 'blog/about.html')
+
+def archives_view(request):
+    year_count = {}
+    month_count = {}
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+            'August', 'September', 'October', 'November', 'December'
+    ]
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
+        '-published_date'
+    )
+    for post in posts:
+        year = post.published_date.year
+        pub_month = int(post.published_date.month)
+
+        if year in year_count:
+            year_count[year] += 1
+        else:
+            year_count[year] = 1
+            month_count[year] = {}
+            for month in months:
+                month_count[year][month] = 0
+        
+        if pub_month in month_count[year]:
+            month_count[year][months[pub_month-1]] += 1
+        else:
+            month_count[year][months[pub_month-1]] = 1 
+
+    print(month_count)
+    return render(request, 'blog/archive.html', {'years':year_count, 'months':month_count})

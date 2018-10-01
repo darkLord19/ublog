@@ -55,6 +55,7 @@
 					<li><a href="{% url 'home_page' %}">Home</a></li>
 					<li><a href="{% url 'about_me' %}">About Me</a></li>
 					<li><a href="{% url 'contact_me' %}">Contact Me</a></li>
+					<li><a href="{% url 'archive' %}">Archives</a></li>
 					{% if user.is_authenticated %}
             			<li><a href="{% url 'post_new' %}">New Post</a></li>
             			<li><a href="{% url 'draft_list' %}" class="top-menu">Drafts</a></li>
@@ -89,9 +90,11 @@
 
 				{% block edit %}
 				{% endblock %}
-
-				
+		
 				{% block content %}
+				{% endblock %}
+
+				{% block archive_view %}
 				{% endblock %}
 			
 			</div>
@@ -119,6 +122,10 @@
 		document.addEventListener('DOMContentLoaded', function() {
 				var elems = document.querySelectorAll('select');
 				var instances = M.FormSelect.init(elems);
+		});
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.collapsible');
+			var instances = M.Collapsible.init(elems);
 		});
 	</script>
     <script defer src="{% static 'blog/js/materialize.min.js' %}"></script> 

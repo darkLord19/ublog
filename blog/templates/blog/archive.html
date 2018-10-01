@@ -1,0 +1,26 @@
+{% extends 'blog/home.html' %}
+
+{% block description %}
+<meta name="description" content="Archive view of Umang Parmar's blog">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% load static %}
+
+{% block archive_view %}
+<ul class="collapsible">
+    {% for key, value in years.items %}
+    <li>
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ key }}</div>
+        <div class="collapsible-body">
+            <a href="{% url 'year_archive' year=key %}">All posts from year {{ key }} ({{ value }})</a>
+            {% for key1, value1 in months.items %}
+                {{key1}}
+            {% endfor %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

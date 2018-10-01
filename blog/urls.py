@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.home_page, name='home_page'),
     path('contact', views.contact_me, name='contact_me'),
     path('about', views.about_me, name='about_me'),
+    path('archives', views.archives_view, name='archive'),
     path('<int:year>/<int:month>/<slug:slug>', views.post_detail, name='post_detail'),
     path('archive/<int:year>', views.year_archive, name='year_archive'),
     path('archive/<int:year>/<int:month>', views.month_archive, name='month_archive'),
