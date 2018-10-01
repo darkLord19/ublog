@@ -16,12 +16,17 @@
     <li>
         <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ key }}</div>
         <div class="collapsible-body">
-            <span><a href="{% url 'year_archive' year=key %}">All posts from year {{ key }} ({{ value }})</a></span>
-            {% with months_count=months|get_months_for_year:key %}
-            {% for key1, value1 in months_count.items %}
-                {{key1}}
-            {% endfor %}
-            {% endwith %}
+            <ul class="collection">
+                <li class="collection-item"><a href="{% url 'year_archive' year=key %}">All posts from year {{ key }}
+                        ({{ value }})</a></li>
+                {% with months_count=months|get_months_for_year:key %}
+                    {% for key1, value1 in months_count.items %}
+                        {% with month_id=key1|get_int_by_month %}
+                        <li class="collection-item"><a href="{% url 'month_archive' year=key month=month_id %}">{{ key1 }} ({{ value1 }})</a></li>
+                        {% endwith %}
+                    {% endfor %}
+                {% endwith %}
+            </ul>
         </div>
     </li>
     {% endfor %}
