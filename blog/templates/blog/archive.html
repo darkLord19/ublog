@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% load static %}
+{% load filters %}
 
 {% block archive_view %}
 <ul class="collapsible">
@@ -15,10 +16,12 @@
     <li>
         <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ key }}</div>
         <div class="collapsible-body">
-            <a href="{% url 'year_archive' year=key %}">All posts from year {{ key }} ({{ value }})</a>
-            {% for key1, value1 in months.items %}
+            <span><a href="{% url 'year_archive' year=key %}">All posts from year {{ key }} ({{ value }})</a></span>
+            {% with months_count=months|get_months_for_year:key %}
+            {% for key1, value1 in months_count.items %}
                 {{key1}}
             {% endfor %}
+            {% endwith %}
         </div>
     </li>
     {% endfor %}
