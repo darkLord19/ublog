@@ -19,7 +19,7 @@
             <span><a href="{% url 'year_archive' year=key %}">All posts from year {{ key }} ({{ value }})</a></span>
             {% with months_count=months|get_months_for_year:key %}
             {% for key1, value1 in months_count.items %}
-                {{key1}}
+                <span><a href="{% url 'month_archive' year=key month=key1 %}">{{ key1 }}</a></span>
             {% endfor %}
             {% endwith %}
         </div>
