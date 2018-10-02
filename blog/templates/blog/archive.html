@@ -22,7 +22,10 @@
                 {% with months_count=months|get_months_for_year:key %}
                     {% for key1, value1 in months_count.items %}
                         {% with month_id=key1|get_int_by_month %}
-                        <li class="collection-item"><a href="{% url 'month_archive' year=key month=month_id %}">{{ key1 }} ({{ value1 }})</a></li>
+                            {% if value1 == 0 %}
+                            {% else %}
+                            <li class="collection-item"><a href="{% url 'month_archive' year=key month=month_id %}">{{ key1 }} ({{ value1 }})</a></li>
+                            {% endif %}
                         {% endwith %}
                     {% endfor %}
                 {% endwith %}
