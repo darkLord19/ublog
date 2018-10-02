@@ -157,10 +157,9 @@ def archives_view(request):
             for month in months:
                 month_count[year][month] = 0
         
-        if pub_month in month_count[year]:
+        if months[pub_month-1] in month_count[year]:
             month_count[year][months[pub_month-1]] += 1
         else:
             month_count[year][months[pub_month-1]] = 1 
 
-    print(month_count)
     return render(request, 'blog/archive.html', {'years':year_count, 'months':month_count})
