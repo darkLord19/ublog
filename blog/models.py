@@ -18,7 +18,7 @@ class Post(models.Model):
     summary = models.CharField(max_length=100)
     created_date = models.DateTimeField(default=timezone.now())
     published_date = models.DateTimeField(blank=True, null=True)
-    slug = models.SlugField(max_length=40, unique=True)
+    slug = models.SlugField(max_length=70, unique=True)
     category = models.CharField(
         max_length=10, choices=category_choices, default='technology'
     )
