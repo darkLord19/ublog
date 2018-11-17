@@ -78,12 +78,15 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect(
-                'post_detail',
-                year=post.published_date.year,
-                month=post.published_date.month,
-                slug=post.slug,
-            )
+            if post.is_published():
+                return redirect(
+                    'post_detail',
+                    year=post.published_date.year,
+                    month=post.published_date.month,
+                    slug=post.slug,
+                )
+            else:
+                return redirect('draft_post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form, 'title': post.title})

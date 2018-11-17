@@ -27,6 +27,11 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    def is_published(self):
+        if self.published_date is None:
+            return False
+        return True
+
     def save(self, *args, **kwargs):
         tmp = str(self.body)
         self.summary = tmp[:100]
