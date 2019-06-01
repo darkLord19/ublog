@@ -22,6 +22,7 @@ class Post(models.Model):
     category = models.CharField(
         max_length=10, choices=category_choices, default='technology'
     )
+    tags = models.ManyToManyField('Tag')
 
     def publish(self):
         self.published_date = timezone.now()
@@ -60,7 +61,6 @@ class Comment(models.Model):
         return self.msg
 
 class Tag(models.Model):
-    post = models.ForeignKey('blog.post', on_delete=models.CASCADE, related_name='tags')
     name = models.CharField(max_length=10)
 
     def __str__(self):
