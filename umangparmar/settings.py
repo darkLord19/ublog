@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'algoliasearch_django',
 ]
 
 MIDDLEWARE = [
@@ -115,3 +116,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = Const.TO_EMAIL[0]
 EMAIL_HOST_PASSWORD = Const.EMAIL_PASSWORD
 EMAIL_PORT = 587
+
+ALGOLIA = {
+    'APPLICATION_ID': os.getenv('ALGOLIA_APPLICATION_ID'),
+    'API_KEY': os.getenv('ALGOLIA_API_KEY'),
+    'SEARCH_API_KEY': os.getenv('ALGOLIA_SEARCH_API_KEY'),
+    'INDEX_PREFIX': 'blog_',
+}
