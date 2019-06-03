@@ -1,5 +1,8 @@
 from django.urls import path
+from django.contrib.sitemaps.views import sitemap
+
 from . import views
+from .sitemap import SITEMAPS
 
 urlpatterns = [
     path('', views.home_page, name='home_page'),
@@ -16,4 +19,5 @@ urlpatterns = [
     path('drafts/<int:pk>', views.draft_post_detail, name='draft_post_detail'),
     path('<int:pk>/publish/', views.post_publish, name='post_publish'),
     path('<int:pk>/remove/', views.post_remove, name='post_remove'),
+    path('sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap')
 ]

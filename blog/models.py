@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.db import models
 from django.template.defaultfilters import slugify
 
+from django.contrib.sites.models import Site
 
 class Post(models.Model):
     category_choices = (
@@ -39,6 +40,10 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        st = '/' + str(self.published_date.year) + '/' + str(self.published_date.month) + '/' + str(self.slug)
+        return st
 
     def __str__(self):
         return self.title

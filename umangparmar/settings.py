@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'algoliasearch_django',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,5 @@ ALGOLIA = {
     'SEARCH_API_KEY': os.getenv('ALGOLIA_SEARCH_API_KEY'),
     'INDEX_PREFIX': 'blog_',
 }
+
+SITE_ID = 1
