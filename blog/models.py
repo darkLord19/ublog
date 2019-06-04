@@ -42,8 +42,12 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        st = '/' + str(self.published_date.year) + '/' + str(self.published_date.month) + '/' + str(self.slug)
-        return st
+        if self.is_published():
+            st = '/' + str(self.published_date.year) + '/' + str(self.published_date.month) + '/' + str(self.slug)
+            return st
+        else:
+            st = '/drafs/' + self.pk
+            return st
 
     def __str__(self):
         return self.title

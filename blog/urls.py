@@ -19,5 +19,5 @@ urlpatterns = [
     path('drafts/<int:pk>', views.draft_post_detail, name='draft_post_detail'),
     path('<int:pk>/publish/', views.post_publish, name='post_publish'),
     path('<int:pk>/remove/', views.post_remove, name='post_remove'),
-    path('sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap')
+    path('sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap'),
 ]
