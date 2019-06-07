@@ -53,6 +53,14 @@
 				<a id="logo-container" class="flow-text" href="{% url 'home_page' %}">Umang Parmar</a>
 				<ul class="right hide-on-med-and-down">
 					<li><a href="{% url 'home_page' %}">Home</a></li>
+					<li><a class="dropdown-trigger" data-target="dropdown-cat" href="#">Categories</a></li>
+					<ul id='dropdown-cat' class='dropdown-content'>
+						<li><a href="{% url 'posts_by_category' category='technology' %}">Technology</a></li>
+						<li><a href="{% url 'posts_by_category' category='personal' %}">Personal</a></li>
+						<li><a href="{% url 'posts_by_category' category='poetry' %}">Poetry</a></li>
+						<li><a href="{% url 'posts_by_category' category='rants' %}">Rants</a></li>
+						<li><a href="{% url 'posts_by_category' category='random' %}">Random</a></li>
+					</ul>
 					<li><a href="{% url 'about_me' %}">About Me</a></li>
 					<li><a href="{% url 'contact_me' %}">Contact Me</a></li>
 					<li><a href="{% url 'archive' %}">Archives</a></li>
@@ -127,6 +135,10 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.collapsible');
 			var instances = M.Collapsible.init(elems);
+		});
+		document.addEventListener('DOMContentLoaded', function () {
+			var elems = document.querySelectorAll('.dropdown-trigger');
+			var instances = M.Dropdown.init(elems, coverTrigger=false, hover=true);
 		});
 	</script>
     <script defer src="{% static 'blog/js/materialize.min.js' %}"></script> 
