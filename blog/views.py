@@ -24,6 +24,13 @@ def post_detail(request, year, month, slug):
         comment = form.save(commit=False)
         comment.post = post
         comment.save()
+        name = comment.author
+        subject = name + ' conmmented of your post ' + post.slug
+        msg = comment.msg
+        try:
+            send_mail(subject, msg, Const.FROM_EMAIL, Const.TO_EMAIL)
+        except BadHeaderError:
+            return redirect(request, 'blog/contact.html', {'bad_header': '1'})
         return redirect(
             'post_detail',
             year=post.published_date.year,
