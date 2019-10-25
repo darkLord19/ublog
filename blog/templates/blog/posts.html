@@ -12,6 +12,7 @@
                 </div>
                 <div class="card-action button">
                   <a class="waves-effect waves-light btn z-depth-2" href="{% url 'post_detail' year=post.published_date.year month=post.published_date.month slug=post.slug %}">Read More</a>
+                  <p class="deep-purple-text">Published in {{ post.published_date.month }}/{{ post.published_date.year }}</p>
                 </div>
               </div>
             </div>
