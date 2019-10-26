@@ -58,7 +58,7 @@ def month_archive(request, year, month):
 
 
 def posts_by_category(request, category):
-    posts = Post.objects.filter(category=category).order_by('-published_date')
+    posts = Post.objects.filter(category=category, published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'blog/posts.html', {'posts': posts})
 
 
