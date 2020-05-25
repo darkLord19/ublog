@@ -5,6 +5,10 @@
 <meta name="description" content="{{ post.summary }}">
 {% endblock %}
 
+{% block page_keywords %}
+<meta name="keywords" content="{{ post.keywords }}">
+{% endblock %}
+
 {% block page_title %}
 <title>{{post.title}}</title>
 {% endblock %}
@@ -12,7 +16,7 @@
 {% block header %}
 	<header class="center-align teal darken-1 white-text" style="height: 140px;">
 		<p class="flow-text"><b>{{ post.title }}</b></p>
-		<span class="meta"> 
+		<span class="meta">
 			{% if post.published_date %}
 				Posted by Umang on {{ post.published_date }}
 			{% else %}
@@ -55,7 +59,7 @@
 						<div class="col s5 m5 l5">
 							<button type="submit" class="btn">Send</button>
 						</div>
-					</div> 
+					</div>
             	</form>
 			  </div>
 		</div>

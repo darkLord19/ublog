@@ -11,6 +11,11 @@
 
 		{% block description %}
 		<meta name="description" content="Personal Blog, Tech Blog ">
+		<meta name="description" content="Digital corner of mind of Umang Parmar">
+		{% endblock %}
+
+		{% block page_keywords %}
+		<meta name="keywords" content="blog, tech, umang, darkLord19, stories">
 		{% endblock %}
 
 		{%block page_title%}
@@ -39,7 +44,7 @@
 				text-decoration: underline;
 			}
 
-			.btn:hover { 
+			.btn:hover {
 				background-color:#ef5350 ;
 			}
 		</style>
@@ -47,7 +52,7 @@
 	</head>
 
   	<body class="blue-grey lighten-5">
-    
+
 		<nav class="teal darken-1" role="navigation">
 			<div class="nav-wrapper container">
 				<a id="logo-container" class="flow-text" href="{% url 'home_page' %}">Umang Parmar</a>
@@ -69,7 +74,7 @@
             			<li><a href="{% url 'draft_list' %}" class="top-menu">Drafts</a></li>
             		{% endif %}
 				</ul>
-		
+
 				<ul id="nav-mobile" class="sidenav">
 					<li><a href="{% url 'home_page' %}">Home</a></li>
 					<li><a href="{% url 'about_me' %}">About Me</a></li>
@@ -87,7 +92,7 @@
 		<main>
 
 			<div class="container" style="margin-top: 12px">
-				
+
 				{% block post_details %}
 				{% endblock %}
 
@@ -99,17 +104,17 @@
 
 				{% block edit %}
 				{% endblock %}
-		
+
 				{% block content %}
 				{% endblock %}
 
 				{% block archive_view %}
 				{% endblock %}
-			
+
 			</div>
-		
+
 		</main>
-	  
+
 		<footer class="page-footer teal darken-2">
 			<ul id="footer" class="center-align" style="text-decoration: underline;">
 				<li><a class="white-text" href="https://www.github.com/darkLord19" target="_blank" rel="noopener"> github </a>|</li>
@@ -121,7 +126,7 @@
 				</div>
 			</div>
 		</footer>
-		
+
 	<script >
 		document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
@@ -140,7 +145,7 @@
 			var instances = M.Dropdown.init(elems, coverTrigger=false, hover=true);
 		});
 	</script>
-    <script defer src="{% static 'blog/js/materialize.min.js' %}"></script> 
+    <script defer src="{% static 'blog/js/materialize.min.js' %}"></script>
 
   </body>
 

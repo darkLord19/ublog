@@ -24,6 +24,7 @@ class Post(models.Model):
         max_length=10, choices=category_choices, default='technology'
     )
     tags = models.ManyToManyField('Tag')
+    keywords = models.CharField(max_length=50, null=True)
 
     def publish(self):
         self.published_date = timezone.now()
