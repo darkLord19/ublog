@@ -6,13 +6,14 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
 from .forms import PostForm, CommentForm, ContactForm
 from umangparmar.privates import Const
+from .about import *
 
 
 def home_page(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
-        '-published_date'
+        "-published_date"
     )
-    return render(request, 'blog/posts.html', {'posts': posts})
+    return render(request, "blog/posts.html", {"posts": posts})
 
 
 def post_detail(request, year, month, slug):
@@ -25,41 +26,43 @@ def post_detail(request, year, month, slug):
         comment.post = post
         comment.save()
         name = comment.author
-        subject = name + ' conmmented of your post ' + post.slug
+        subject = name + " conmmented of your post " + post.slug
         msg = comment.msg
         try:
             send_mail(subject, msg, Const.FROM_EMAIL, Const.TO_EMAIL)
         except BadHeaderError:
-            return redirect(request, 'blog/contact.html', {'bad_header': '1'})
+            return redirect(request, "blog/contact.html", {"bad_header": "1"})
         return redirect(
-            'post_detail',
+            "post_detail",
             year=post.published_date.year,
             month=post.published_date.month,
             slug=post.slug,
         )
-    return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
+    return render(request, "blog/post_detail.html", {"post": post, "form": form})
 
 
 def draft_post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    return render(request, "blog/post_detail.html", {"post": post})
 
 
 def year_archive(request, year):
-    posts = Post.objects.filter(published_date__year=year).order_by('-published_date')
-    return render(request, 'blog/posts.html', {'posts': posts})
+    posts = Post.objects.filter(published_date__year=year).order_by("-published_date")
+    return render(request, "blog/posts.html", {"posts": posts})
 
 
 def month_archive(request, year, month):
     posts = Post.objects.filter(
         published_date__year=year, published_date__month=month
-    ).order_by('-published_date')
-    return render(request, 'blog/posts.html', {'posts': posts})
+    ).order_by("-published_date")
+    return render(request, "blog/posts.html", {"posts": posts})
 
 
 def posts_by_category(request, category):
-    posts = Post.objects.filter(category=category, published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/posts.html', {'posts': posts})
+    posts = Post.objects.filter(
+        category=category, published_date__lte=timezone.now()
+    ).order_by("-published_date")
+    return render(request, "blog/posts.html", {"posts": posts})
 
 
 @login_required
@@ -70,10 +73,10 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('draft_post_detail', pk=post.pk)
+            return redirect("draft_post_detail", pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'blog/post_new.html', {'form': form})
+    return render(request, "blog/post_new.html", {"form": form})
 
 
 @login_required
@@ -87,22 +90,22 @@ def post_edit(request, pk):
             post.save()
             if post.is_published():
                 return redirect(
-                    'post_detail',
+                    "post_detail",
                     year=post.published_date.year,
                     month=post.published_date.month,
                     slug=post.slug,
                 )
             else:
-                return redirect('draft_post_detail', pk=post.pk)
+                return redirect("draft_post_detail", pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form, 'title': post.title})
+    return render(request, "blog/post_edit.html", {"form": form, "title": post.title})
 
 
 @login_required
 def draft_list(request):
-    posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
-    return render(request, 'blog/post_draft_list.html', {'posts': posts})
+    posts = Post.objects.filter(published_date__isnull=True).order_by("-created_date")
+    return render(request, "blog/post_draft_list.html", {"posts": posts})
 
 
 @login_required
@@ -110,7 +113,7 @@ def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect(
-        'post_detail',
+        "post_detail",
         year=post.published_date.year,
         month=post.published_date.month,
         slug=post.slug,
@@ -121,51 +124,51 @@ def post_publish(request, pk):
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect('home_page')
+    return redirect("home_page")
 
 
 def contact_me(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            name = request.POST.get('name', '')
-            subject = name + ' contacted you from your blog'
-            from_email = request.POST.get('from_email', '')
-            msg = request.POST.get('msg', '')
+            name = request.POST.get("name", "")
+            subject = name + " contacted you from your blog"
+            from_email = request.POST.get("from_email", "")
+            msg = request.POST.get("msg", "")
             if name and from_email and msg:
                 try:
                     send_mail(subject, msg, from_email, Const.TO_EMAIL)
                 except BadHeaderError:
-                    return redirect(request, 'blog/contact.html', {'bad_header': '1'})
-                return redirect('contact_me')
+                    return redirect(request, "blog/contact.html", {"bad_header": "1"})
+                return redirect("contact_me")
     else:
         form = ContactForm()
-    return render(request, 'blog/contact.html', {'form': form})
+    return render(request, "blog/contact.html", {"form": form})
 
 
 def about_me(request):
-    return render(request, 'blog/about.html')
+    return render(request, "blog/about.html", {"about_me": about_me_dict})
 
 
 def archives_view(request):
     year_count = {}
     month_count = {}
     months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
     ]
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
-        '-published_date'
+        "-published_date"
     )
     for post in posts:
         year = post.published_date.year
@@ -185,5 +188,5 @@ def archives_view(request):
             month_count[year][months[pub_month - 1]] = 1
 
     return render(
-        request, 'blog/archive.html', {'years': year_count, 'months': month_count}
+        request, "blog/archive.html", {"years": year_count, "months": month_count}
     )

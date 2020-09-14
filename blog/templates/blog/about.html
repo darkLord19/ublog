@@ -11,20 +11,16 @@
 {% endblock %}
 
 {% load static %}
-    
+
 {% block about %}
     <div class="row valign-wrapper">
         <div class="col s10 m10 l12 offset-s1 offset-m1 valign">
             <div class="card white hoverable">
             <div class="card-content dark-text">
-                <p>Hi! My name is Umang. I am currently working at Juniper Networks as a Software Engineer. I have completed 
-		    my undergraduate degree in Information and Communication Technology field from DA-IICT. 
-		    I am very much interested in Operating Systems and Computer Networks. In addition to these, I
-                    like backend development, playing with data and servers.</p>
-                    <br/>
-                <p>I am strong believer of open source. I use only *nix operating systems for my daily usage.
-                    On non-technical side, I like to play badminton and sometimes I write!
-                </p>
+            {% for k,v in about_me.items %}
+                <p>{{ v | linebreaks }}</p>
+                <br/>
+            {% endfor %}
             </div>
             </div>
         </div>
