@@ -1,2 +1,2 @@
-# portfolio-blog
-Source code for my personal portfolio and blog site.
+# blog
+Source code for my personal blog site.
