@@ -139,19 +139,19 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems);
-		});
+		}, {passive: true});
 		document.addEventListener('DOMContentLoaded', function() {
 				var elems = document.querySelectorAll('select');
 				var instances = M.FormSelect.init(elems);
-		});
+		}, {passive: true});
 		document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.collapsible');
 			var instances = M.Collapsible.init(elems);
-		});
+		}, {passive: true});
 		document.addEventListener('DOMContentLoaded', function () {
 			var elems = document.querySelectorAll('.dropdown-trigger');
 			var instances = M.Dropdown.init(elems, coverTrigger=false, hover=true);
-		});
+		}, {passive: true});
 	</script>
 	<script
 		data-goatcounter="https://ublog.goatcounter.com/count"
