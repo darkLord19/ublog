@@ -1,4 +1,5 @@
 {% extends 'blog/home.html' %}
+{% load markdownify %}
 
 {% block content %}
 
@@ -8,7 +9,7 @@
               <div class="card grey lighten-5 hoverable">
                 <div class="card-content dark-text">
                   <span class="card-title deep-purple-text"><b>{{ post.title }}</b></span>
-                  <p>{{ post.summary | linebreaksbr }}</p>
+                  <p>{{ post.summary | markdown | safe | linebreaksbr }}</p>
                 </div>
                 <div class="card-action button">
                   <a class="waves-effect waves-light btn z-depth-2" href="{% url 'post_detail' year=post.published_date.year month=post.published_date.month slug=post.slug %}">Read More</a>
