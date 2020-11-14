@@ -2,16 +2,24 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
 from django.core.mail import BadHeaderError, send_mail
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
 from .forms import PostForm, CommentForm, ContactForm
 from .about import *
 
-
 def home_page(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
+    all_posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
         "-published_date"
     )
+    page = request.GET.get('page', 1)
+    paginator = Paginator(all_posts, 5)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
     return render(request, "blog/posts.html", {"posts": posts})
 
 
