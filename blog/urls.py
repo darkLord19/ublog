@@ -3,6 +3,7 @@ from django.contrib.sitemaps.views import sitemap
 
 from . import views
 from .sitemap import SITEMAPS
+from .feed import LatestEntriesFeed
 
 urlpatterns = [
     path('', views.home_page, name='home_page'),
@@ -20,4 +21,5 @@ urlpatterns = [
     path('<int:pk>/publish/', views.post_publish, name='post_publish'),
     path('<int:pk>/remove/', views.post_remove, name='post_remove'),
     path('sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap'),
+    path('feed', LatestEntriesFeed()),
 ]
