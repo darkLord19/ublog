@@ -66,6 +66,9 @@
 				<a id="logo-container" class="flow-text" href="{% url 'home_page' %}">Umang Parmar</a>
 				<ul class="right hide-on-med-and-down">
 					<li><a href="{% url 'home_page' %}">Home</a></li>
+					<li><a href="{% url 'about_me' %}">About Me</a></li>
+					<li><a href="{% url 'contact_me' %}">Contact Me</a></li>
+					<li><a href="{% url 'archive' %}">Archives</a></li>
 					<li><a class="dropdown-trigger" data-target="dropdown-cat" href="#">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
 					<ul id='dropdown-cat' class='dropdown-content teal lighten-5'>
 						<li><a href="{% url 'posts_by_category' category='technology' %}">Technology</a></li>
@@ -74,9 +77,6 @@
 						<li><a href="{% url 'posts_by_category' category='rants' %}">Rants</a></li>
 						<li><a href="{% url 'posts_by_category' category='random' %}">Random</a></li>
 					</ul>
-					<li><a href="{% url 'about_me' %}">About Me</a></li>
-					<li><a href="{% url 'contact_me' %}">Contact Me</a></li>
-					<li><a href="{% url 'archive' %}">Archives</a></li>
 					{% if user.is_authenticated %}
             			<li><a href="{% url 'post_new' %}">New Post</a></li>
             			<li><a href="{% url 'draft_list' %}" class="top-menu">Drafts</a></li>
