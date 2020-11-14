@@ -67,9 +67,17 @@ def month_archive(request, year, month):
 
 
 def posts_by_category(request, category):
-    posts = Post.objects.filter(
+    all_posts = Post.objects.filter(
         category=category, published_date__lte=timezone.now()
     ).order_by("-published_date")
+    page = request.GET.get('page', 1)
+    paginator = Paginator(all_posts, 5)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
     return render(request, "blog/posts.html", {"posts": posts})
 
 
