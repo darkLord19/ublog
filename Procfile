@@ -1,1 +1,1 @@
-web: gunicorn umangparmar.wsgi
+web: gunicorn umangparmar.wsgi --log-file -
