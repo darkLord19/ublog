@@ -1,8 +1,8 @@
 about_me_dict = {
-    "summary": "lore ipsum",
-    "professional": "I am currently working at Juniper Networks as a Software Engineer working on \
-        Packet Forwarding Engine for Juniper Switching producs. \
-        I have completed my undergraduate degree in Information and Communication Technology field from DA-IICT.",
-    "personal": "lorem ipsum",
-    "random": "lorem ipsum",
+    "summary": "",
+    "professional": "I am currently working at Lyearn as a Product Engineer working on \
+        building employee learning and productivity suite. \
+        I have done my undergraduate in Information and Communication Technology from DA-IICT.",
+    "personal": "I keep telling myself that one day I will build my own operating system!",
+    "random": "",
 }
