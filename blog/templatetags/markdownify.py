@@ -6,5 +6,5 @@ register = template.Library()
 
 @register.filter
 def markdown(value):
-    markdown = mistune.Markdown()
+    markdown = mistune.create_markdown()
     return markdown(value)
