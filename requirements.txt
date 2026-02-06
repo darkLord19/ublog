@@ -5,7 +5,7 @@ click==6.7
 cmake==3.25.0
 colorama==0.4.5
 Django==4.1.13
-gunicorn==20.1.0
+gunicorn==22.0.0
 haxor-news==0.4.3
 idna==3.3
 mistune==3.0.2
