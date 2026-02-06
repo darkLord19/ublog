@@ -11,7 +11,7 @@ idna==3.3
 mistune==3.0.2
 prompt-toolkit==1.0.18
 psycopg2==2.9.5
-Pygments==2.13.0
+Pygments==2.15.0
 pytz==2022.6
 requests==2.31.0
 six==1.16.0
