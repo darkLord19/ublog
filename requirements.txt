@@ -13,7 +13,7 @@ prompt-toolkit==1.0.18
 psycopg2==2.9.5
 Pygments==2.15.0
 pytz==2022.6
-requests==2.31.0
+requests==2.32.4
 six==1.16.0
 sqlparse==0.4.3
 urllib3==1.26.18
